@@ -13,7 +13,9 @@ RUN echo "$TERRAFORM_SHA256SUM  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" 
 ENV TFNOTIFY_VERSION=0.3.0 TFNOTIFY_SHA256SUM=5ab65b9d6638fe269c30ec81c0e3bdaa06368e3b31d979869061271afdb2caaa
 ADD https://github.com/mercari/tfnotify/releases/download/v${TFNOTIFY_VERSION}/tfnotify_v${TFNOTIFY_VERSION}_linux_amd64.tar.gz ./
 RUN echo "$TFNOTIFY_SHA256SUM  tfnotify_v${TFNOTIFY_VERSION}_linux_amd64.tar.gz" | sha256sum -c - \
-    && tar xzvf tfnotify_v${TFNOTIFY_VERSION}_linux_amd64.tar.gz -C /bin \
+    && tar xzvf tfnotify_v${TFNOTIFY_VERSION}_linux_amd64.tar.gz -C /tmp \
+    && mv "/tmp/tfnotify_v${TFNOTIFY_VERSION}_linux_amd64/tfnotify" /bin \
+    && rm -rf "/tmp/tfnotify_v${TFNOTIFY_VERSION}_linux_amd64" \
     && rm -f tfnotify_v${TFNOTIFY_VERSION}_linux_amd64.tar.gz
 
 ENTRYPOINT ["/bin/sh"]
