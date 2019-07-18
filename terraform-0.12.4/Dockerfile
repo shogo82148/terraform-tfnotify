@@ -3,7 +3,7 @@ LABEL maintainer="Ichinose Shogo <shogo82148@gmail.com>"
 
 ENV TERRAFORM_VERSION=0.12.4 TERRAFORM_SHA256SUM=0231562f26262de233e8e8fac668196af21b7aff355bb04f3ee1606cca239c0a
 
-RUN apk add --update openssl
+RUN apk update && apk add openssl ca-certificates && rm -rf /var/cache/apk/*
 
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
 RUN echo "$TERRAFORM_SHA256SUM  terraform_${TERRAFORM_VERSION}_linux_amd64.zip" | sha256sum -c - \
