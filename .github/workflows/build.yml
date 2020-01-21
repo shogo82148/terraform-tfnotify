@@ -1,0 +1,18 @@
+name: build images
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: build
+        run: ./build.sh
+      - name: push
+        run: ./push.sh
+        env:
+          DOCKERHUB_PASSWORD: ${{ secrets.PASSWORD }}
