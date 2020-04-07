@@ -6,7 +6,7 @@ ARG TERRAFORM_SHA256SUM
 
 RUN apk update && apk add openssl ca-certificates && rm -rf /var/cache/apk/*
 
-ENV TFNOTIFY_VERSION=0.5.2 TFNOTIFY_SHA256SUM=e236e3cf7992430fa1fcad30f1e7e37d2440879c40d2655fe9a316f9863e7b47
+ENV TFNOTIFY_VERSION=0.6.0 TFNOTIFY_SHA256SUM=108958bf56ff45d6eec1ed977d8c50855a7aa313cbf60cefd89cbed86c9ae381
 RUN mkdir -p /tmp/tfnotify && cd /tmp/tfnotify \
     && wget -O tfnotify.tar.gz -q https://github.com/mercari/tfnotify/releases/download/v${TFNOTIFY_VERSION}/tfnotify_linux_amd64.tar.gz \
     && echo "$TFNOTIFY_SHA256SUM  tfnotify.tar.gz" | sha256sum -c - \
