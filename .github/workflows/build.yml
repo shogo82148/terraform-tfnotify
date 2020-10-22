@@ -16,4 +16,4 @@ jobs:
         run: ./push.sh
         env:
           DOCKERHUB_PASSWORD: ${{ secrets.PASSWORD }}
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
